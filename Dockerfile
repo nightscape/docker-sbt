@@ -1,4 +1,4 @@
-# Scala and sbt on Java 8
+# SBT on Java 8
 #
 # URL: https://github.com/nightscape/docker-scala
 #
@@ -6,44 +6,16 @@
 #              - https://index.docker.io/u/pulse00/scala/
 #              - https://github.com/dubture-dockerfiles/scala
 #
-# Version     0.6
+# Version     0.7
 
 FROM jeanblanchard/busybox-java:8
 MAINTAINER Martin Mauch <martin.mauch@gmail.com>
 
+RUN opkg-install bash
 
-ENV SCALA_TARBALL http://www.scala-lang.org/files/archive/scala-2.11.4.deb
-ENV SBT_JAR       https://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/0.13.6/sbt-launch.jar
+ENV SBT_VERSION 0.13.7
 
-
-
-RUN \
-    echo "===> install from Typesafe repo (contains old versions but they have all dependencies we need later on)"  && \
-    DEBIAN_FRONTEND=noninteractive \
-        apt-get install -y --force-yes wget  && \
-    wget http://apt.typesafe.com/repo-deb-build-0002.deb  && \
-    dpkg -i repo-deb-build-0002.deb  && \
-    apt-get update  && \
-    \
-    \
-    \
-    echo "===> install Scala"  && \
-    DEBIAN_FRONTEND=noninteractive \
-        apt-get install -y --force-yes libjansi-java  && \
-    wget -nv $SCALA_TARBALL  && \
-    dpkg -i scala-*.deb   && \
-    \
-    \
-    \
-    echo "===> install sbt"  && \
-    wget -nv -P /usr/local/bin/  $SBT_JAR    && \
-    \
-    \
-    \
-    echo "===> clean up..."  && \
-    rm -f *.deb  && \
-    apt-get clean
-
+RUN mkdir -p /usr/local/bin && wget -P /usr/local/bin/ http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/$SBT_VERSION/sbt-launch.jar && ls /usr/local/bin
 
 COPY sbt /usr/local/bin/
 
@@ -51,6 +23,9 @@ COPY sbt /usr/local/bin/
 # create an empty sbt project;
 # then fetch all sbt jars from Maven repo so that your sbt will be ready to be used when you launch the image
 COPY test-sbt.sh /tmp/
+
+ENV SCALA_VERSION 2.11.4
+
 RUN cd /tmp  && \
     ./test-sbt.sh  && \
     rm -rf *
@@ -64,4 +39,4 @@ RUN cd /tmp  && \
 
 
 # Define default command.
-CMD ["scala"]
+CMD ["sbt"]
