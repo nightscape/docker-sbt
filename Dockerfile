@@ -27,6 +27,8 @@ COPY test-sbt.sh /tmp/
 ENV SCALA_VERSION 2.11.4
 
 RUN cd /tmp  && \
+    mkdir -p src/main/scala && \
+    echo "object Main {}" > src/main/scala/Main.scala && \
     ./test-sbt.sh  && \
     rm -rf *
 
