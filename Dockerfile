@@ -1,6 +1,6 @@
 # SBT on Java 8
 #
-# URL: https://github.com/nightscape/docker-scala
+# URL: https://github.com/nightscape/docker-sbt
 #
 # forked from: William-Yeh/docker-scala
 #              - https://index.docker.io/u/pulse00/scala/
