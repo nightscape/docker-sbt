@@ -1,15 +1,15 @@
-# Scala and sbt on Java 7
+# Scala and sbt on Java 8
 #
-# URL: https://github.com/William-Yeh/docker-scala
+# URL: https://github.com/nightscape/docker-scala
 #
-# forked from: pulse00/scala
+# forked from: William-Yeh/docker-scala
 #              - https://index.docker.io/u/pulse00/scala/
 #              - https://github.com/dubture-dockerfiles/scala
 #
 # Version     0.6
 
-FROM williamyeh/java7
-MAINTAINER William Yeh <william.pjyeh@gmail.com>
+FROM jeanblanchard/busybox-java:8
+MAINTAINER Martin Mauch <martin.mauch@gmail.com>
 
 
 ENV SCALA_TARBALL http://www.scala-lang.org/files/archive/scala-2.11.4.deb
