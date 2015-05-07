@@ -24,7 +24,7 @@ COPY sbt /usr/local/bin/
 # then fetch all sbt jars from Maven repo so that your sbt will be ready to be used when you launch the image
 COPY test-sbt.sh /tmp/
 
-ENV SCALA_VERSION 2.11.4
+ENV SCALA_VERSION 2.11.6
 
 RUN cd /tmp  && \
     mkdir -p src/main/scala && \
