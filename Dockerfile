@@ -13,7 +13,7 @@ MAINTAINER Martin Mauch <martin.mauch@gmail.com>
 
 RUN opkg-install bash
 
-ENV SBT_VERSION 0.13.7
+ENV SBT_VERSION 0.13.8
 
 RUN mkdir -p /usr/local/bin && wget -P /usr/local/bin/ http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/$SBT_VERSION/sbt-launch.jar && ls /usr/local/bin
 
